@@ -1,0 +1,91 @@
+3>Linq query
+---------------
+a>disply all the employees using LINQ query
+--------------------------------------------------
+var queryAllEmployees=from emplist in employee
+                       select emplist;
+
+
+b>disply details of all the employee whose location is not in mumbai
+---------------------------------------------------------------------
+
+var querymumbaiemployee=from emplist in employee
+                         where emplist.city != "Mumbai"
+                         select emplist;
+
+c>disply details of all employee whose title is Asstmanager
+-----------------------------------------------------------
+var querytitleemployee= from emplist in employee
+                        where emplist.title== "Asstmanager"
+                        select emplist;
+
+d>disply details of all the employee whoes last name starts with S
+--------------------------------------------------------------------
+var queryname=from emplist in employee
+              where (employee=>employee.contains("%S"))
+              select emplist;
+
+e>disply a list of employee who have joined before 1/1/2015
+-------------------------------------------------------------
+var queryjoinedemp=from emplist in employee
+                   where emplist.DOJ < '1/1/2015'
+                   select emplist;
+
+f>disply a list of employee whose date of birth is after 1/1/1990
+-------------------------------------------------------------------
+var querydobemp=from emplist in employee
+                where emplist.DOB > '1/1/1990' 
+                select emplist;
+
+g>disply a list of all the employee whose designation is consultant and associate
+----------------------------------------------------------------------------------
+var querydesignation=from emplist in employee
+                     where emplist.title=="consultant" && emplist.title=="Associate"
+                     select emplist;
+
+h>disply total number of employee
+------------------------------------------------
+var querytotalemployee=(from emplist in employee
+                       select emplist.employeeid).Count();
+
+i>disply total number of employees belonging to "chennai"
+----------------------------------------------------------
+var queryempid=(from emplist in employee
+               where emplist.city= "chennai"
+               select emplist.employeeid).Count();
+
+j>disply highest employee id from the list
+-------------------------------------------
+var queryemplist=(from emplist in employee
+                 select employeeid).Max();
+
+k>disply total number of employee who have joined after 1/1/2015
+-----------------------------------------------------------------
+var queryafterjoin=from emplist in employee
+                   where emplist.DOj > '1/1/2015'
+                   select emplist;
+
+l>disply total number of employee whose designation is not "Associate"
+-----------------------------------------------------------------------
+var querytitleemp=from emplist in employee
+                   where emplist.title != "Associate"
+                   select emplist;
+
+m>disply total number of employee based on city
+-------------------------------------------------
+var querycityemp=(from emplist in employee
+                  group emplist by emplist.city
+                  select emplist.emploeeid).Count();
+
+n>disply total number of employee based on city and title
+----------------------------------------------------------
+var querytotalempcity=(from emplist in employee
+                       group emplist by emplist.city,emplist.title
+                       select emplist.employeeid).count();
+
+o>disply total number of employee who is youngest in the list
+---------------------------------------------------------------
+var on emplistqueryemplistcount=(from emplist in employee
+                        join emp in employee on emplist.employeeid equals emp.employeeid
+                        orderby emp.DOB
+                        select MIN(DOB)).Count();
